@@ -1,9 +1,9 @@
+import { BsFillBasket3Fill } from "react-icons/bs"; 
+import { BiSearchAlt2 } from "react-icons/bi"; 
 import React from 'react'
 import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 import { auth } from "./firebase";
-import basketshop from '../img/shopping-basket.png';
-import search from '../img/search-interface-symbol.png';
 
 
 const Header = () => {
@@ -32,9 +32,7 @@ const Header = () => {
          type="text" 
 
          />
-       <img src={search} alt=""  
-        className="header__searchIcon p-1 h-6 bg-seachIcon "
-       />
+       <BiSearchAlt2 className="header__searchIcon p-1 h-6 bg-seachIcon " />
       </div>
 
       <div className="header__nav flex justify-evenly">
@@ -65,7 +63,7 @@ const Header = () => {
 
         <Link to="/checkout">
         <div className="header__optionBasket flex items-center text-white">
-           <img src={basketshop} alt="" />
+          <BsFillBasket3Fill />
             <span className="header__optionLineTwo header__basketCount font-extrabold text-sm mx-3">
             {basket?.length}
             </span>
