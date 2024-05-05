@@ -3,7 +3,6 @@ import CheckoutProduct from './CheckoutProduct';
 import { useStateValue } from './StateProvider';
 import Header from './Header';
 import { Link } from 'react-router-dom';
-
 import StripePayment from './StripePayment';
 
 const Payment = () => {
@@ -63,6 +62,7 @@ const Payment = () => {
             <h3>Payment Method</h3>
         </div>
         <div className="payment-detials flex-[0.8]">
+        {/* <StripePayment/> */}
         <StripePayment/>
         </div>
     

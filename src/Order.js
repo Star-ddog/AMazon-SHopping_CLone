@@ -1,6 +1,5 @@
-import moment from 'moment/moment'
-import React from 'react'
-import Checkout from './Checkout';
+import moment from 'moment/moment';
+import React from 'react';
 import CheckoutProduct from './CheckoutProduct';
 import CurrencyFormat from 'react-currency-format';
 import { useStateValue } from './StateProvider';

@@ -8,10 +8,10 @@ import { useStateValue } from './StateProvider';
 import { useEffect } from 'react';
 import { auth } from './firebase';
 import Payment from './Payment';
-import StripePayment from './StripePayment';
-import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Orders from './Orders';
+import PaystackPayment from './PaystackPayment';
+import { Elements } from '@stripe/react-stripe-js';
 
 
 
@@ -55,6 +55,7 @@ function App() {
                         <Route path='/checkout' element={<Checkout />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/orders' element={<Orders />} />
+                        {/* <Route path='/payment' element={<PaystackPayment />} /> */}
                         {/* Wrap the Payment route in the <Elements> provider */}
                         <Route path='/payment' element={<Elements stripe={stripePromise}><Payment /></Elements>} />
                     </Routes>
