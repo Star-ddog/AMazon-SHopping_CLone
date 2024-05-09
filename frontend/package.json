@@ -13,7 +13,7 @@
     "moment": "^2.30.1",
     "paystack": "^2.0.1",
     "react": "^18.2.0",
-    "react-currency-format": "^1.1.0",
+    
     "react-dom": "^18.2.0",
     "react-flip-move": "^3.0.5",
     "react-icons": "^5.2.0",

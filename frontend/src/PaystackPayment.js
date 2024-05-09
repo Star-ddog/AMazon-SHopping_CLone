@@ -5,12 +5,19 @@ import { getBasketTotal } from './reducer';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { db } from './firebase';
-import CurrencyFormat from 'react-currency-format';
 
 const PaystackPayment = () => {
     const navigate = useNavigate();
 
     const [{ basket, user }, dispatch] = useStateValue();
+
+    const orderTotal = getBasketTotal(basket);
+    const formattedTotal = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'NGN'
+    }).format(orderTotal);
+
+
     const [config, setConfig] = useState({
       reference: (new Date()).getTime().toString(),
       email: '',
@@ -67,16 +74,7 @@ const PaystackPayment = () => {
   
     return (
       <div>
-         <CurrencyFormat
-                          renderText={(value) => (
-                              <h3 className="pb-5">Order Total: {value}</h3>
-                          )}
-                          decimalScale={2}
-                          value={getBasketTotal(basket)}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                          prefix={"$"}
-                      />
+        <h3 className="pb-5">Order Total: {formattedTotal}</h3>
         <PaystackButton {...componentProps}
           className='bg-yellow-400 rounded-md w-full h-8 border border-solid font-semibold mt-2 border-yellow-600 text-gray-800' />
       </div>

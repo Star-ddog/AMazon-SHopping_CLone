@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import CurrencyFormat from 'react-currency-format';
 import axios from './axios';
 import { useStateValue } from './StateProvider';
 import { getBasketTotal } from './reducer';
@@ -15,6 +14,12 @@ const stripePromise = loadStripe('pk_test_51P4lMDKMXxBxcQTl8KzfTPmRU5BAq2eLzVX1L
 const StripePayment = () => {
     const navigate = useNavigate();
     const [{ basket, user }, dispatch] = useStateValue();
+
+    const orderTotal = getBasketTotal(basket);
+const formattedTotal = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD'
+}).format(orderTotal);
 
 
 
@@ -118,16 +123,7 @@ const StripePayment = () => {
             <form onSubmit={handleSubmit}>
                 <CardElement onChange={handleChange} />
                 <div className="payment__priceContainer">
-                    <CurrencyFormat
-                        renderText={(value) => (
-                            <h3 className="pb-5">Order Total: {value}</h3>
-                        )}
-                        decimalScale={2}
-                        value={getBasketTotal(basket)}
-                        displayType={"text"}
-                        thousandSeparator={true}
-                        prefix={"$"}
-                    />
+                <h3 className="pb-5">Order Total: {formattedTotal}</h3>
                     <button disabled={processing || disabled || succeeded} className='bg-yellow-400 rounded-md w-full h-8 border border-solid font-semibold mt-2 border-yellow-600 text-gray-800'>
                         <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                     </button>
